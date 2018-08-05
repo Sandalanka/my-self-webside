@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+<link href="css/galleria.css" rel="stylesheet" type="text/css" media="screen"> 
+        <link rel="stylesheet" href="css/main.css">
+
+<script type="text/javascript" src="jquery-1.2.6.min.js"></script> 
+<script type="text/javascript" src="jquery.galleria.js"></script> 
+<script type="text/javascript"> 
+jQuery(function($) { 
+
+$('ul.gallery').galleria({
+			history   : true, // activates the history object for bookmarking, back-button etc.
+			clickNext : true, // helper for making the image clickable
+			insert    : '#main_image', // the containing selector for our main image
+			onImage   : function(image,caption,thumb) { // let's add some image effects for demonstration purposes
+				
+				// fade in the image & caption
+				if(! ($.browser.mozilla && navigator.appVersion.indexOf("Win")!=-1) ) { // FF/Win fades large images terribly slow
+					image.css('display','none').fadeIn(1000);
+				}
+				caption.css('display','none').fadeIn(600);
+				
+				// fetch the thumbnail container
+				var _li = thumb.parents('li');
+				
+				// fade out inactive thumbnail
+				_li.siblings().children('img.selected').fadeTo(500,0.3);
+				
+				// fade in active thumbnail
+				thumb.fadeTo('fast',1).addClass('selected');
+				
+				// add a title for the clickable image
+				image.attr('title','Next image >>');
+			},
+			onThumb : function(thumb) { // thumbnail effects goes here
+				
+				// fetch the thumbnail container
+				var _li = thumb.parents('li');
+				
+				// if thumbnail is active, fade all the way.
+				var _fadeTo = _li.is('.active') ? '1' : '0.3';
+				
+				// fade in the thumbnail when finnished loading
+				thumb.css({display:'none',opacity:_fadeTo}).fadeIn(1000);
+				
+				// hover effects
+				thumb.hover(
+					function() { thumb.fadeTo('fast',1); },
+					function() { _li.not('.active').children('img').fadeTo('fast',0.3); } // don't fade out if the parent is active
+				)
+			}
+		});
+
+
+
+
+
+
+}); 
+</script>
+
+<style media="screen,projection" type="text/css">
+	
+	/* BEGIN DEMO STYLE */
+
+	.gallery li{width:80px;height:60px;border:3px double #111;margin: 0 2px;background:#000; float:left;}
+	.gallery {width:300px;}
+
+    </style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container_12" id="topContent">
+    <div class="grid_4">
+            
+            <h2>Isuru Sandalanka Gallery</h2>
+    </div>
+    <div class="grid_8" id="rightTopContent">
+              <nav>
+            <ul>
+                <li> <a href="home.html">Home</a></li>
+            <li><a href="1.html">Gallery</a></li>
+                <li><a href="video.html">my video</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+            
+    </div>
+</div>
+
+
+    <div class="clear">&nbsp;</div>
+
+<div class="container_12">
+<div class="grid_4">    
+        <ul class="gallery"> 
+			<li class="active"><img src="1.gif" title="Welcom my gallry" alt="1"></li> 
+            <li><img src="2.jpg" title="Babarakanda" alt="2"></li> 
+            <li><img src="3.jpg" title="Hiking " alt="3"></li> 
+            <li><img src="4.jpg" title="Appled faculty" alt="4"></li> 
+            <li><img src="5.jpg" title="Diyathalawa" alt="5"></li> 
+            <li><img src="6.jpg" title="GoogleI/Oe" alt="6"></li> 
+            <li><img src="7.jpg" title="With my friend" alt="7"></li> 
+            <li><img src="8.jpg" title="University of rajarata" alt="8"></li> 
+            <li><img src="9.jpg" title="One of my friend" alt="9"></li> 
+            <li><img src="10.jpg" title="trip time" alt="10"></li> 
+            <li><img src="11.jpg" title="My selfy" alt="11"></li> 
+            <li><img src="12.jpg" title="Famouse place" alt="12"></li> 
+		</ul>
+        
+	</div>
+	<!-- end .grid_4 -->
+	<div class="grid_8">
+
+			<div id="main_image"></div>
+	</div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <div class="container_16">
+    <div class="grid_2">
+		<p>&nbsp;</p>
+	</div>
+    
+      <div class="grid_12" id="galleryInformation">
+	
+       
+       
+    
+        <div class="grid_2">
+		<p>&nbsp;</p>
+	</div>
+    </div>
+    
+</div>
+     <footer>
+            <p>Design by | Isuru Sandalanka|tel:0713221679 </p>
+                
+           
+        </footer>
+        
+
+</body>
+</html>
